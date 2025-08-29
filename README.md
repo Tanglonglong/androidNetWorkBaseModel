@@ -9,7 +9,7 @@
 
 AGP 构建版本是"8.13.0-alpha03"，比较新各位Androidstudio太老可能拉下来，要改构建环境
 
-AGP和studio 版本兼容可在这个网站看：https://blog.csdn.net/zxc472504515/article/details/149889882
+AGP和studio 版本兼容可在这个网站看：(https://blog.csdn.net/ys743276112/article/details/141501346)
 
 2. 业务层使用
    //添加网络模块依赖
