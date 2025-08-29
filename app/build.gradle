@@ -1,0 +1,61 @@
+plugins {
+    alias(libs.plugins.android.application)
+}
+
+android {
+    namespace 'com.example.networkbasemodel'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId "com.example.networkbasemodel"
+        minSdk 31
+        targetSdk 36
+        versionCode 1
+        versionName "1.0"
+        resValue "string", "app_version", versionName  // 动态生成字符串资源
+        resValue "string", "app_version_code", versionCode.toString()  // 动态生成字符串资源
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    buildFeatures {
+        buildConfig = true
+    }
+}
+
+dependencies {
+
+    implementation libs.appcompat
+    implementation libs.material
+    implementation libs.activity
+    implementation libs.constraintlayout
+    implementation project(':netWorkModel')
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
+    //添加网络模块依赖
+    implementation project(':netWorkModel')
+
+    implementation  libs.refresh.layout.kernel      //核心必须依赖
+    implementation  libs.refresh.header.classics    //经典刷新头
+    implementation  libs.scwang90.refresh.header.radar       //雷达刷新头
+    implementation  libs.scwang90.refresh.header.falsify     //虚拟刷新头
+    implementation  libs.scwang90.refresh.header.material    //谷歌刷新头
+    implementation  libs.scwang90.refresh.header.two.level   //二级刷新头
+    implementation  libs.scwang90.refresh.footer.ball        //球脉冲加载
+    implementation  libs.scwang90.refresh.footer.classics    //经典加载
+
+    implementation libs.baserecyclerviewadapterhelper
+    implementation libs.glide
+
+
+}
