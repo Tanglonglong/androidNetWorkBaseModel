@@ -20,8 +20,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * 网络API
- *
- * @author llw
  */
 public class NetworkApi {
 
@@ -32,19 +30,10 @@ public class NetworkApi {
     //sRetrofitHashMap
     private static HashMap<String, Retrofit> sRetrofitHashMap = new HashMap<>();
 
-
-    public static final String TAG = "NetworkApi";
-
-    /**
-     * 初始化
-     */
     public static void init(INetworkRequiredInfo networkRequiredInfo) {
         sINetworkRequiredInfo = networkRequiredInfo;
     }
 
-    /**
-     * 创建serviceClass的实例
-     */
     public static <T> T createService(Class<T> serviceClass) {
         return getRetrofit(serviceClass).create(serviceClass);
     }
@@ -97,7 +86,6 @@ public class NetworkApi {
      * @return OkHttpClient
      */
     private static OkHttpClient getOkHttpClient() {
-        //不为空则说明已经配置过了，直接返回即可。
         if (sOkHttpClient == null) {
             //OkHttp构建器
             OkHttpClient.Builder builder = new OkHttpClient.Builder();
@@ -144,9 +132,9 @@ public class NetworkApi {
         Retrofit.Builder builder = new Retrofit.Builder();
         //设置访问地址
         builder.baseUrl(sINetworkRequiredInfo.getBaseUrl());
-        //设置OkHttp客户端，传入上面写好的方法即可获得配置后的OkHttp客户端。
+        //设置OkHttp代理
         builder.client(getOkHttpClient());
-        //设置数据解析器 会自动把请求返回的结果（json字符串）通过Gson转化工厂自动转化成与其结构相符的实体Bean
+        //设置数据解析器
         builder.addConverterFactory(GsonConverterFactory.create());
         //设置请求回调，使用RxJava 对网络返回进行处理
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
