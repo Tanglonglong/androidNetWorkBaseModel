@@ -17,8 +17,6 @@ refreshHeaderTwoLevelVersion = "3.0.0-alpha"
 refreshHeaderMaterialVersion = "3.0.0-alpha"
 refreshHeaderFalsifyVersion = "3.0.0-alpha"
 refreshHeaderRadarVersion = "3.0.0-alpha"
-refreshLayoutKernel = "2.0.0-alpha-1"
-refreshLayoutKernelVersion = "2.0.3"
 rxandroid = "2.1.1"
 rxjava = "2.2.21"
 

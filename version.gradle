@@ -1,4 +1,9 @@
 ext {
-    appVersionCode = 100
-    appVersionName = "2.3.5"
+    android = [
+            compileSdkVersion: 36,
+            minSdkVersion    : 29,
+            targetSdkVersion : 36,
+            versionCode      : 3,
+            versionName      : "3.0.0"
+    ]
 }

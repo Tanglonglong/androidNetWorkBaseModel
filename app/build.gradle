@@ -4,14 +4,14 @@ plugins {
 
 android {
     namespace 'com.example.networkbasemodel'
-    compileSdk 36
+    compileSdk rootProject.ext.android.compileSdkVersion
 
     defaultConfig {
         applicationId "com.example.networkbasemodel"
-        minSdk 31
-        targetSdk 36
-        versionCode 1
-        versionName "1.0"
+        minSdk rootProject.ext.android.minSdkVersion
+        targetSdk rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
         resValue "string", "app_version", versionName  // 动态生成字符串资源
         resValue "string", "app_version_code", versionCode.toString()  // 动态生成字符串资源
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -45,17 +45,17 @@ dependencies {
     //添加网络模块依赖
     implementation project(':netWorkModel')
 
-    implementation  libs.refresh.layout.kernel      //核心必须依赖
-    implementation  libs.refresh.header.classics    //经典刷新头
-    implementation  libs.scwang90.refresh.header.radar       //雷达刷新头
-    implementation  libs.scwang90.refresh.header.falsify     //虚拟刷新头
-    implementation  libs.scwang90.refresh.header.material    //谷歌刷新头
-    implementation  libs.scwang90.refresh.header.two.level   //二级刷新头
-    implementation  libs.scwang90.refresh.footer.ball        //球脉冲加载
-    implementation  libs.scwang90.refresh.footer.classics    //经典加载
-
-    implementation libs.baserecyclerviewadapterhelper
+    implementation libs.refresh.layout.kernel      //核心必须依赖
+    implementation libs.refresh.header.classics    //经典刷新头
+    implementation libs.scwang90.refresh.header.radar       //雷达刷新头
+    implementation libs.scwang90.refresh.header.falsify     //虚拟刷新头
+    implementation libs.scwang90.refresh.header.material    //谷歌刷新头
+    implementation libs.scwang90.refresh.header.two.level   //二级刷新头
+    implementation libs.scwang90.refresh.footer.ball        //球脉冲加载
+    implementation libs.scwang90.refresh.footer.classics    //经典加载
     implementation libs.glide
 
 
 }
+
+println "compileSdkVersion: ${rootProject.ext.android.compileSdkVersion}"

@@ -1,7 +1,9 @@
 package com.example.networkbasemodel;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         });
         initView();
         initData();
-
+        initListener();
     }
 
     private void initView() {
@@ -72,11 +74,22 @@ public class MainActivity extends AppCompatActivity {
                 getData();
             }
         });
+    }
 
+    private void initListener() {
+        mNewAdapter.setOnItemClickListener(new NewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                System.out.println("BBBBBBBBBBBBBBBBBBBBBBBB");
+                Intent intent = new Intent(MainActivity.this, NewDetailsActivity.class);
+                intent.putExtra("url", mData.get(position).getUrl());
+                MainActivity.this.startActivity(intent);
+            }
+        });
     }
 
     private void initData() {
-        mNewAdapter = new NewAdapter(this, R.layout.new_item, mData);
+        mNewAdapter = new NewAdapter(this, mData);
         mRecyclerView.setAdapter(mNewAdapter);
         getData();
     }
@@ -86,14 +99,19 @@ public class MainActivity extends AppCompatActivity {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onSuccess(NewResponse newResponse) {
-                mData.addAll(newResponse.getResult().getData());
-                mNewAdapter.notifyDataSetChanged();
+                if (newResponse.getError_code() == 0) {
+                    mData.addAll(newResponse.getResult().getData());
+                    mNewAdapter.notifyDataSetChanged();
+                } else {
+                    Toast.makeText(MainActivity.this, "业务异常code：" + newResponse.getError_code(), Toast.LENGTH_SHORT).show();
+                }
                 mRefreshLayout.finishRefresh();
                 mRefreshLayout.finishLoadMore();
             }
 
             @Override
             public void onFailure(Throwable e) {
+                //http 异常处理 TODO
                 mRefreshLayout.finishRefresh();
                 mRefreshLayout.finishLoadMore();
             }

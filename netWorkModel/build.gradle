@@ -4,10 +4,10 @@ plugins {
 
 android {
     namespace 'com.example.networkmodel'
-    compileSdk 36
+    compileSdk rootProject.ext.android.compileSdkVersion
 
     defaultConfig {
-        minSdk 31
+        minSdk rootProject.ext.android.minSdkVersion
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
